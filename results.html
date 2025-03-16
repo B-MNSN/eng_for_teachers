@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Teachers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            margin: 1.5rem 0;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .banner {
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://i.pinimg.com/736x/6c/73/f1/6c73f11eb36eee6e869d7066b630edbc.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.8;
+            box-shadow: 0px 1px 4px 1px #000;
+
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0px 0px 10px rgb(0 0 0);
+        }
+
+        .info-box {
+            background: #e7ebf0;
+            padding: 15px;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-align: center;
+            color: #3d3d3d;
+            border-left: 5px solid #6f60f9;
+            border-right: 5px solid #6f60f9;
+        }
+
+        .header {
+            font-size: 1.75rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin: 0 0 0.75rem 0;
+            color: #3d3d3d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+        }
+
+        th {
+            background: #6f60f9;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #d0d7e3;
+        }
+
+        tbody tr:nth-child(odd) {
+            background: #f4f6fa;
+        }
+
+        tbody tr:hover {
+            background: #d0d7e3;
+            transition: 0.3s;
+        }
+
+        .note {
+            margin-top: 20px;
+            padding: 12px;
+            background: #ffebee;
+            border-left: 5px solid #d32f2f;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #b71c1c;
+            text-align: start;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a class="nav-logo" href="/index.html">
+            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+        </a>
+        <div class="nav-links">
+            <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
+            <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
+            <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
+            <div class="user-menu">
+                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="dropdown">
+                    <a href="/login.html" id="loginButton">Login</a>
+                    <div id="logoutSection" style="display: none;">
+                        <div id="usernameDisplay"></div>
+                        <div id="logoutButton">Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="banner">
+            <h1>Results</h1>
+        </div>
+        <div class="info-box">
+            <div class="header">ผลการประเมิน การบูรณาการภาษาอังกฤษในงานครู</div>
+            ชื่อ-สกุล: <span id="boxInfo"></span>
+        </div>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>ผ่านการประเมินครั้งที่ 1</th>
+                    <th>ผ่านการประเมินครั้งที่ 2</th>
+                    <th>ผ่านการประเมินครั้งที่ 3</th>
+                    <th>ผ่านการประเมินครั้งที่ 4</th>
+                </tr>
+            </thead>
+            <tbody id="boxPass">
+                <!-- <tr>
+                    <td>งานที่ 1 สถานการณ์ที่ 1, <br>งานที่ 1 สถานการณ์ที่ 1,<br> งานที่ 1 สถานการณ์ที่ 1</td>
+                    <td>งานที่ 3 สถานการณ์ที่ 2</td>
+                    <td>งานที่ 5 สถานการณ์ที่ 1</td>
+                    <td>งานที่ 8 สถานการณ์ที่ 3</td>
+                </tr> -->
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>ไม่ผ่านการประเมินครั้งที่ 1</th>
+                    <th>ไม่ผ่านการประเมินครั้งที่ 2</th>
+                    <th>ไม่ผ่านการประเมินครั้งที่ 3</th>
+                    <th>ไม่ผ่านการประเมินครั้งที่ 4</th>
+                </tr>
+            </thead>
+            <tbody id="boxNotPass">
+                <!-- <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr> -->
+            </tbody>
+        </table>
+        <div class="note">หมายเหตุ: ถ้าผลการประเมินไม่ผ่านให้นัดหมายเพื่อประเมินอีกครั้งหนึ่ง</div>
+    </div>
+    
+    <script src="/index.js"></script>
+</body>
+
+</html>

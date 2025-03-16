@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Teachers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            margin: 1.5rem 0;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .guideline {
+            margin-top: 30px;
+            padding: 30px;
+            background: #dbeafe;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .guideline h2 i {
+            font-size: 28px;
+            color: #6666ff;
+            margin: 0 0.5rem 0 0;
+        }
+
+        .guideline-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .guideline-card {
+            background: white;
+            padding: 25px;
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .guideline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .guideline-card i {
+            font-size: 40px;
+            color: #6666ff;
+            margin-bottom: 15px;
+        }
+
+        .guideline-card h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .guideline-card p {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <!-- <a class="nav-logo" href="https://sites.google.com/view/working-in-daily-life/home">
+            <img src="https://i.imghippo.com/files/nIs3092EQ.png" width="50" alt="" srcset="">
+            <span>EngIntWork</span>
+        </a> -->
+        <a class="nav-logo" href="/index.html">
+            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+        </a>
+        <div class="nav-links">
+            <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
+            <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
+            <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
+            <div class="user-menu">
+                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="dropdown">
+                    <a href="/login.html" id="loginButton">Login</a>
+                    <div id="logoutSection" style="display: none;">
+                        <div id="usernameDisplay"></div>
+                        <div id="logoutButton">Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>การบูรณาการภาษาอังกฤษในงานครู</h2>
+        <h2>ENGLISH INTEGRATED WORKING IN DAILY LIFE OF TEACHERS</h2>
+        <div class="guideline">
+            <h2><i class="fas fa-book-open"></i> คู่มือการใช้งาน</h2>
+            <div class="guideline-grid">
+                <div class="guideline-card">
+                    <i class="fas fa-tasks"></i>
+                    <h4>Task</h4>
+                    <p>พัฒนาและทบทวนทักษะภาษาอังกฤษของคุณผ่านแบบฝึกหัดและกิจกรรม</p>
+                </div>
+                <div class="guideline-card">
+                    <i class="far fa-calendar-alt"></i>
+                    <h4>Appointment</h4>
+                    <p>บริหารตารางงานและการนัดหมายของคุณในภาษาอังกฤษได้ง่ายๆ</p>
+                </div>
+                <div class="guideline-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4>Result</h4>
+                    <p>ติดตามและวิเคราะห์ความก้าวหน้าของคุณในการเรียนรู้ภาษาอังกฤษ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Teachers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        .container {
+            margin: 1.5rem 0;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            color: #555;
+        }
+
+        .breadcrumb a {
+            color: #3d3d3d;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #ff0099;
+        }
+
+        .breadcrumb .separator {
+            margin: 0 0.5rem;
+            color: #888;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: left;
+            margin: 0 4rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #3d3d3d;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .dialogue {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #dbeafe;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .dialogue p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .play-audio-button {
+            display: flex;
+            justify-content: end;
+        }
+
+        .play-audio-button button {
+            background-color: #4d6bfe;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .play-audio-button button:hover {
+            background-color: #2d4ffa;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background-color: #e0e0e0;
+        }
+
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .option-section {
+            padding: 1.5rem;
+            background-color: #dbeafe;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option.selected {
+            background-color: #4d6bfe;
+        }
+        .option.selected .option-label, .option.selected .option-text, .option.selected .audio-icon{
+            color: #fff;
+
+        }
+
+        .option-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3d3d3d;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .audio-icon {
+            font-size: 1.2rem;
+            color: #3d3d3d;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .audio-icon:hover {
+            color: #ff0099;
+        }
+
+        .dialogue strong strong{
+            margin: 0 1rem 0 0.5rem; 
+        }
+        .dialogue strong {
+            color: #4d6bfe;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a class="nav-logo" href="/index.html">
+            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+        </a>
+        <div class="nav-links">
+            <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
+            <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
+            <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
+            <div class="user-menu">
+                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="dropdown">
+                    <a href="/login.html" id="loginButton">Login</a>
+                    <div id="logoutSection" style="display: none;">
+                        <div id="usernameDisplay"></div>
+                        <div id="logoutButton">Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <!-- <div class="breadcrumb">
+            <a href="https://sites.google.com/view/working-in-daily-life/tasks">Task</a>
+            <span class="separator">/</span>
+            <a href="https://sites.google.com/view/working-in-daily-life/tasks">สถานการณ์ที่ 1 ยืนเวรประตู</a>
+            <span class="separator">/</span>
+            <span>การพูดคุยทักทายเพื่อนครูที่ยืนเวรด้วยกัน</span>
+        </div> -->
+
+        <!-- Content -->
+        <div class="content">
+            <h2>สถานการณ์ที่ 5 ห้องพักครู</h2>
+            <h3>ถาม – ตอบการคัดเลือกนักเรียนตัวแทน</h3>
+            
+            <!-- Dialogue Section -->
+            <div class="dialogue">
+                <div>
+                    <p><strong>T1 <strong>:</strong> </strong> Have you already chosen the student to receive <span class="highlight">Poh Teck Tung scholarships (a)?</span></p>
+                    <p><strong>T2 <strong>:</strong> </strong> I haven’t chosen yet. What are its criterion?</p>
+                    <p><strong>T1 <strong>:</strong> </strong> The notice mentioned that <span class="highlight">the students must have the good behavior (b).</span> </p>
+                    <p><strong>T2 <strong>:</strong> </strong> Will it expire <span class="highlight">tomorrow (c)? </span>Which documents do we have to prepare?</p>
+                    <p><strong>T1 <strong>:</strong> </strong> Yes. <span class="highlight">You have to prepare the scholarship applications (d).</span></p>
+                </div>
+
+                <!-- Play Audio Button -->
+                <div class="play-audio-button">
+                    <button onclick="playAudio('dialogueAudio')">
+                        <i class="fas fa-volume-up"></i> เล่นเสียงบทสนทนา
+                    </button>
+                    <audio id="dialogueAudio" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s5_4.mp3?v=1742117495131"></audio>
+                </div>
+
+            </div>
+
+            
+             <!-- Options Section -->
+             <div class="options">
+                <div class="option-section">
+                    <h3>เลือกสำหรับส่วน a:</h3>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA1')" data-section="a">
+                        <span class="option-label">A</span>
+                        <span class="option-text">Merit scholarships</span>
+                        <span class="audio-icon" onclick="playAudio('audioA1')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA1" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA2')" data-section="a">
+                        <span class="option-label">B</span>
+                        <span class="option-text">BMA Education Fund Scholarship</span>
+                        <span class="audio-icon" onclick="playAudio('audioA2')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA2" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA3')" data-section="a">
+                        <span class="option-label">C</span>
+                        <span class="option-text">Wat Phra Si Mahatat  Scholarship </span>
+                        <span class="audio-icon" onclick="playAudio('audioA3')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA3" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA4')" data-section="a">
+                        <span class="option-label">D</span>
+                        <span class="option-text">TISCO Foundation Scholarship</span>
+                        <span class="audio-icon" onclick="playAudio('audioA4')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA4" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA5')" data-section="a">
+                        <span class="option-label">E</span>
+                        <span class="option-text">Waterdrop Foundation Scholarship</span>
+                        <span class="audio-icon" onclick="playAudio('audioA5')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA5" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA6')" data-section="a">
+                        <span class="option-label">F</span>
+                        <span class="option-text">Scholarship under the project of students notifying more than one hundred bad effects for more than one million scholarships</span>
+                        <span class="audio-icon" onclick="playAudio('audioA6')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA6" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA7')" data-section="a">
+                        <span class="option-label">G</span>
+                        <span class="option-text">Grant for fire victims</span>
+                        <span class="audio-icon" onclick="playAudio('audioA7')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA7" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA8')" data-section="a">
+                        <span class="option-label">H</span>
+                        <span class="option-text">IPEC Scholarship </span>
+                        <span class="audio-icon" onclick="playAudio('audioA8')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA8" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA9')" data-section="a">
+                        <span class="option-label">I</span>
+                        <span class="option-text">Zero Dropout Scholarship</span>
+                        <span class="audio-icon" onclick="playAudio('audioA9')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA9" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA10')" data-section="a">
+                        <span class="option-label">J</span>
+                        <span class="option-text">Scholarship under the project of youths touching the life under Thai seas for scuba diving learning</span>
+                        <span class="audio-icon" onclick="playAudio('audioA10')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA10" src=""></audio>
+                    </div>
+                </div>
+                <div class="option-section">
+                    <h3>เลือกสำหรับส่วน b:</h3>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB1')" data-section="b">
+                        <span class="option-label">A</span>
+                        <span class="option-text">the students must have GPA more than 3.00</span>
+                        <span class="audio-icon" onclick="playAudio('audioB1')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB1" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB2')" data-section="b">
+                        <span class="option-label">B</span>
+                        <span class="option-text">the students are poor.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB2')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB2" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB3')" data-section="b">
+                        <span class="option-label">C</span>
+                        <span class="option-text">the students have special skills.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB3')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB3" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB4')" data-section="b">
+                        <span class="option-label">D</span>
+                        <span class="option-text">the students have to encounter the house fire.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB4')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB4" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB5')" data-section="b">
+                        <span class="option-label">E</span>
+                        <span class="option-text">the students must write the bad effects of marijuana and drug relevantly in complete sentences and can express the meanings clearly.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB5')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB5" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB6')" data-section="b">
+                        <span class="option-label">F</span>
+                        <span class="option-text">the students must participate in many campaigns supporting youths to stay away from drugs.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB6')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB6" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB7')" data-section="b">
+                        <span class="option-label">G</span>
+                        <span class="option-text">the students’ families must be very poor. Their monthly average income are about 1,094 baht per person.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB7')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB7" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB8')" data-section="b">
+                        <span class="option-label">H</span>
+                        <span class="option-text">the students must write essays about the sea.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB8')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB8" src=""></audio>
+                    </div>
+                </div>
+                <div class="option-section">
+                    <h3>เลือกสำหรับส่วน c:</h3>
+                    <div class="option" onclick="selectOption(this, 'c', 'audioC1')" data-section="c">
+                        <span class="option-label">A</span>
+                        <span class="option-text">next week</span>
+                        <span class="audio-icon" onclick="playAudio('audioC1')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioC1" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'c', 'audioC2')" data-section="c">
+                        <span class="option-label">B</span>
+                        <span class="option-text">next Monday</span>
+                        <span class="audio-icon" onclick="playAudio('audioC2')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioC2" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'c', 'audioC3')" data-section="c">
+                        <span class="option-label">C</span>
+                        <span class="option-text">next month</span>
+                        <span class="audio-icon" onclick="playAudio('audioC3')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioC3" src=""></audio>
+                    </div>
+                </div>
+                <div class="option-section">
+                    <h3>เลือกสำหรับส่วน d:</h3>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD1')" data-section="d">
+                        <span class="option-label">A</span>
+                        <span class="option-text">Copy of ID card</span>
+                        <span class="audio-icon" onclick="playAudio('audioD1')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD1" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD2')" data-section="d">
+                        <span class="option-label">B</span>
+                        <span class="option-text">Affirmation of School</span>
+                        <span class="audio-icon" onclick="playAudio('audioD2')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD2" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD3')" data-section="d">
+                        <span class="option-label">C</span>
+                        <span class="option-text">Copy of school-record in the latest semester</span>
+                        <span class="audio-icon" onclick="playAudio('audioD3')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD3" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD4')" data-section="d">
+                        <span class="option-label">D</span>
+                        <span class="option-text">Recommendation letter from advisor</span>
+                        <span class="audio-icon" onclick="playAudio('audioD4')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD4" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD5')" data-section="d">
+                        <span class="option-label">E</span>
+                        <span class="option-text">Straight face photo</span>
+                        <span class="audio-icon" onclick="playAudio('audioD5')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD5" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD6')" data-section="d">
+                        <span class="option-label">F</span>
+                        <span class="option-text">Photo of lodgings</span>
+                        <span class="audio-icon" onclick="playAudio('audioD6')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD6" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD7')" data-section="d">
+                        <span class="option-label">G</span>
+                        <span class="option-text">Letter in one page of A4 to truly describe about living and lodging conditions </span>
+                        <span class="audio-icon" onclick="playAudio('audioD7')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD7" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD8')" data-section="d">
+                        <span class="option-label">H</span>
+                        <span class="option-text">English test results</span>
+                        <span class="audio-icon" onclick="playAudio('audioD8')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD8" src=""></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'd', 'audioD9')" data-section="d">
+                        <span class="option-label">I</span>
+                        <span class="option-text">Income certificate of parents</span>
+                        <span class="audio-icon" onclick="playAudio('audioD9')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioD9" src=""></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // เล่นเสียงบทสนทนา
+        function playAudio(audioId) {
+            var audio = document.getElementById(audioId);
+            audio.play();
+        }
+
+        // เลือกตัวเลือก
+        function selectOption(option, section,audioId) {
+            // ลบคลาส selected จากตัวเลือกอื่นๆ ในส่วนเดียวกัน
+          var options = document.querySelectorAll('.option[data-section]');
+            options.forEach(function(opt) {
+                opt.classList.remove('selected');
+            });
+
+            // เพิ่มคลาส selected ให้ตัวเลือกที่คลิก
+            option.classList.add('selected');
+
+            // ตรวจสอบว่าทุกส่วนถูกเลือกแล้วหรือไม่
+            var allSectionsSelected = true;
+            var sections = ['a', 'b', 'c'];
+            sections.forEach(function(sec) {
+                var selected = document.querySelector('.option.selected[data-section="' + sec + '"]');
+                if (!selected) {
+                    allSectionsSelected = false;
+                }
+            });
+
+          var audio = document.getElementById(audioId);
+          audio.play();
+
+        }
+
+    </script>
+    <script src="/index.js"></script>
+</body>
+
+</html>

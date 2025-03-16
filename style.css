@@ -1,0 +1,109 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: rgb(231, 235, 240);
+    color: #3d3d3d;
+    margin: 1rem;
+    padding: 0;
+    font-family: "Kanit", Arial, sans-serif;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none !important;
+    color: #000;
+}
+.navbar {
+    background-color: #4d6bfe;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.nav-logo{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-logo span {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-links .menu-item {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 0.75rem 1rem;
+    position: relative;
+    transition: color 0.3s;
+    
+}
+
+.nav-links .menu-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.3s ease-in-out;
+    left: 50%;
+    transform: translate(-50%, 0);
+    
+}
+
+.nav-links .menu-item:hover::after {
+    width: 100%;
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-icon {
+    color: #ffffff;
+    font-size: 1.75rem;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: end;
+    padding: 0.5rem;
+    font-size: 1.15rem;
+    z-index: 1;
+}
+
+.dropdown #logoutButton {
+   cursor: pointer;
+}
+.dropdown div {
+    padding: 0.5rem;
+}
+.dropdown #logoutSection div:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
+.user-menu:hover .dropdown {
+    display: block;
+}

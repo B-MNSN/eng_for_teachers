@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Teachers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            margin: 1.5rem 0;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            color: #555;
+        }
+
+        .breadcrumb a {
+            color: #3d3d3d;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #ff0099;
+        }
+
+        .breadcrumb .separator {
+            margin: 0 0.5rem;
+            color: #888;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: left;
+            margin: 0 4rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #3d3d3d;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .dialogue {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #dbeafe;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .dialogue p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .play-audio-button {
+            display: flex;
+            justify-content: end;
+        }
+
+        .play-audio-button button {
+            background-color: #4d6bfe;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .play-audio-button button:hover {
+            background-color: #2d4ffa;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background-color: #e0e0e0;
+        }
+
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .option-section {
+            padding: 1.5rem;
+            background-color: #dbeafe;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option.selected {
+            background-color: #4d6bfe;
+        }
+        .option.selected .option-label, .option.selected .option-text, .option.selected .audio-icon{
+            color: #fff;
+
+        }
+
+        .option-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3d3d3d;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .audio-icon {
+            font-size: 1.2rem;
+            color: #3d3d3d;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .audio-icon:hover {
+            color: #ff0099;
+        }
+
+        .dialogue strong strong{
+            margin: 0 1rem 0 0.5rem; 
+        }
+        .dialogue strong {
+            color: #4d6bfe;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a class="nav-logo" href="/index.html">
+            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+        </a>
+        <div class="nav-links">
+            <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
+            <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
+            <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
+            <div class="user-menu">
+                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="dropdown">
+                    <a href="/login.html" id="loginButton">Login</a>
+                    <div id="logoutSection" style="display: none;">
+                        <div id="usernameDisplay"></div>
+                        <div id="logoutButton">Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <!-- <div class="breadcrumb">
+            <a href="https://sites.google.com/view/working-in-daily-life/tasks">Task</a>
+            <span class="separator">/</span>
+            <a href="https://sites.google.com/view/working-in-daily-life/tasks">สถานการณ์ที่ 1 ยืนเวรประตู</a>
+            <span class="separator">/</span>
+            <span>การพูดคุยทักทายเพื่อนครูที่ยืนเวรด้วยกัน</span>
+        </div> -->
+
+        <!-- Content -->
+        <div class="content">
+            <h2>สถานการณ์ที่ 8 ห้องคอม</h2>
+            <h3>การถาม-ตอบ ถึงภาระงานของครูประจำห้องคอมพิวเตอร์ </h3>
+            
+            <!-- Dialogue Section -->
+            <div class="dialogue">
+                <div>
+                    <p><strong>T1 <strong>:</strong> </strong> Hello. Can I use a computer to <span class="highlight">make worksheet papers? (a)</span></p>
+                    <p><strong>T2 <strong>:</strong> </strong> Yes, you can.</p>
+                    <p><strong>T1 <strong>:</strong> </strong> What are you doing? </p>
+                    <p><strong>T2 <strong>:</strong> </strong> I am  <span class="highlight">scanning viruses (b).</span></p>
+                </div>
+
+                <!-- Play Audio Button -->
+                <div class="play-audio-button">
+                    <button onclick="playAudio('dialogueAudio')">
+                        <i class="fas fa-volume-up"></i> เล่นเสียงบทสนทนา
+                    </button>
+                    <audio id="dialogueAudio" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1.mp3?v=1742114919755"></audio>
+                </div>
+
+            </div>
+
+            
+             <!-- Options Section -->
+             <div class="options">
+                <div class="option-section">
+                    <h3>เลือกสำหรับส่วน a:</h3>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA1')" data-section="a">
+                        <span class="option-label">A</span>
+                        <span class="option-text">fill the HR information.</span>
+                        <span class="audio-icon" onclick="playAudio('audioA1')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA1" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_a1.m4a?v=1742114933427"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA2')" data-section="a">
+                        <span class="option-label">B</span>
+                        <span class="option-text">take notes about students’ reading.</span>
+                        <span class="audio-icon" onclick="playAudio('audioA2')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA2" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_a2.m4a?v=1742114935581"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA3')" data-section="a">
+                        <span class="option-label">C</span>
+                        <span class="option-text">make lesson plans.</span>
+                        <span class="audio-icon" onclick="playAudio('audioA3')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA3" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_a3.m4a?v=1742114938953"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA4')" data-section="a">
+                        <span class="option-label">D</span>
+                        <span class="option-text">make exercise worksheets.</span>
+                        <span class="audio-icon" onclick="playAudio('audioA4')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA4" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_a4.m4a?v=1742114941019"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA5')" data-section="a">
+                        <span class="option-label">E</span>
+                        <span class="option-text">make documents about camping.</span>
+                        <span class="audio-icon" onclick="playAudio('audioA5')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA5" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_a5.m4a?v=1742114943302"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA6')" data-section="a">
+                        <span class="option-label">F</span>
+                        <span class="option-text">search the information to do or decorate bulletin boards.</span>
+                        <span class="audio-icon" onclick="playAudio('audioA6')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA6" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_a6.m4a?v=1742114945652"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'a', 'audioA7')" data-section="a">
+                        <span class="option-label">G</span>
+                        <span class="option-text">look for songs used in lessons.</span>
+                        <span class="audio-icon" onclick="playAudio('audioA7')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioA7" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_a7.m4a?v=1742114947789"></audio>
+                    </div>
+                </div>
+                <div class="option-section">
+                    <h3>เลือกสำหรับส่วน b:</h3>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB1')" data-section="b">
+                        <span class="option-label">A</span>
+                        <span class="option-text">installing the software.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB1')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB1" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_b1.mp3?v=1742114955518"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB2')" data-section="b">
+                        <span class="option-label">B</span>
+                        <span class="option-text">updating the software.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB2')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB2" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_b2.mp3?v=1742114958052"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB3')" data-section="b">
+                        <span class="option-label">C</span>
+                        <span class="option-text">making training handouts for BEMIS Program.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB3')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB3" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_b3.mp3?v=1742114960472"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB4')" data-section="b">
+                        <span class="option-label">D</span>
+                        <span class="option-text">making the computer list.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB4')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB4" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_b4.mp3?v=1742114962840"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB5')" data-section="b">
+                        <span class="option-label">E</span>
+                        <span class="option-text">planning to organize the information.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB5')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB5" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_b5.mp3?v=1742114965032"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB6')" data-section="b">
+                        <span class="option-label">F</span>
+                        <span class="option-text">backing up the data of school website.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB6')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB6" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_b6.mp3?v=1742114967281"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB7')" data-section="b">
+                        <span class="option-label">G</span>
+                        <span class="option-text">making the procurement documents.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB7')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB7" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_b7.mp3?v=1742114969757"></audio>
+                    </div>
+                    <div class="option" onclick="selectOption(this, 'b', 'audioB8')" data-section="b">
+                        <span class="option-label">H</span>
+                        <span class="option-text">examining the computer specifications.</span>
+                        <span class="audio-icon" onclick="playAudio('audioB8')"><i class="fas fa-volume-up"></i></span>
+                        <audio id="audioB8" src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/s8_1_b8.mp3?v=1742114971715"></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // เล่นเสียงบทสนทนา
+        function playAudio(audioId) {
+            var audio = document.getElementById(audioId);
+            audio.play();
+        }
+
+        // เลือกตัวเลือก
+        function selectOption(option, section,audioId) {
+            // ลบคลาส selected จากตัวเลือกอื่นๆ ในส่วนเดียวกัน
+          var options = document.querySelectorAll('.option[data-section]');
+            options.forEach(function(opt) {
+                opt.classList.remove('selected');
+            });
+
+            // เพิ่มคลาส selected ให้ตัวเลือกที่คลิก
+            option.classList.add('selected');
+
+            // ตรวจสอบว่าทุกส่วนถูกเลือกแล้วหรือไม่
+            var allSectionsSelected = true;
+            var sections = ['a', 'b', 'c'];
+            sections.forEach(function(sec) {
+                var selected = document.querySelector('.option.selected[data-section="' + sec + '"]');
+                if (!selected) {
+                    allSectionsSelected = false;
+                }
+            });
+
+          var audio = document.getElementById(audioId);
+          audio.play();
+
+        }
+
+    </script>
+    <script src="/index.js"></script>
+</body>
+
+</html>

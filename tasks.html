@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Teachers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            margin: 1.5rem 0;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .banner {
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://i.pinimg.com/736x/52/01/65/5201651216099bbca32e0618469c1a47.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.8;
+            box-shadow: 0px 1px 4px 2px #000;
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 10px rgb(0 0 0);
+        }
+        /* ปรับการ์ดให้แสดงแถวละ 4 การ์ด */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* ไอคอนลูกศรทึบ */
+        .card .arrow-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .card.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        /* เมนูย่อย */
+        .submenu {
+            display: none;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .submenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .submenu ul li {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+            font-size: 1rem;
+            color: #555;
+            transition: background 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .submenu ul li:hover {
+            background-color: #f1f1f1;
+        }
+
+        .submenu ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* ปุ่มเริ่ม */
+        .submenu ul li a.start-btn {
+            color: white;
+            text-decoration: none;
+            padding: 0.25rem 1.25rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: background 0.3s, transform 0.3s;
+            display: inline-block;
+            background-color: #4d6bfe;
+        }
+
+        .submenu ul li a.start-btn:hover {
+            background-color: #2d4ffa; 
+            transform: scale(1.05); 
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .card-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a class="nav-logo" href="/index.html">
+            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+        </a>
+        <div class="nav-links">
+            <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
+            <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
+            <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
+            <div class="user-menu">
+                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="dropdown">
+                    <a href="/login.html" id="loginButton">Login</a>
+                    <div id="logoutSection" style="display: none;">
+                        <div id="usernameDisplay"></div>
+                        <div id="logoutButton">Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="banner">
+            <h1>Tasks</h1>
+        </div>
+
+        <div class="card-container">
+            <!-- ยืนเวรประตู -->
+            <div class="card" onclick="toggleSubmenu('submenu1', this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Hibbing_High_School_2014.jpg/1200px-Hibbing_High_School_2014.jpg" alt="ยืนเวรประตู">
+                <div class="card-content">
+                    <h3>ยืนเวรประตู</h3>
+                    <i class="fa-solid fa-caret-down arrow-icon"></i>
+                </div>
+                <div class="submenu" id="submenu1">
+                    <ul>
+                        <li>
+                            การพูดคุยทักทายเพื่อนครูที่ยืนเวรด้วยกัน
+                            <a href="/situation1_1.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การถาม-ตอบ เกี่ยวกับสุขภาพเพื่อนครูที่ยืนเวรด้วยกัน
+                            <a href="/situation1_2.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การถาม-ตอบเกี่ยวกับการเดินทางมาโรงเรียนของเพื่อนครู
+                            <a href="/situation1_3.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            ถาม – ตอบ การเตรียมอาหารมาทานสำหรับมื้อเช้า
+                            <a href="/situation1_4.html" class="start-btn">เริ่ม</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- สหกรณ์โรงเรียน -->
+            <div class="card" onclick="toggleSubmenu('submenu2', this)">
+                <img src="https://europeanschool.ge//app/uploads/2023/08/esstore-13-Copy.jpg" alt="สหกรณ์โรงเรียน">
+                <div class="card-content">
+                    <h3>สหกรณ์โรงเรียน</h3>
+                    <i class="fa-solid fa-caret-down arrow-icon"></i>
+                </div>
+                <div class="submenu" id="submenu2">
+                    <ul>
+                        <li>
+                            การให้ข้อมูลราคาสินค้าแก่ลูกค้า(ครู)
+                            <a href="/situation2_1.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การถาม-ตอบ เวลาเปิด-ปิดของสหกรณ์
+                            <a href="/situation2_2.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การถาม-ตอบ เกี่ยวกับเงินปันผลหุ้นสหกรณ์
+                            <a href="/situation2_3.html" class="start-btn">เริ่ม</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- เวรตักอาหาร -->
+            <div class="card" onclick="toggleSubmenu('submenu3', this)">
+                <img src="https://t3.ftcdn.net/jpg/01/41/72/10/360_F_141721050_ROxbwbstag4afG1oB8rIPG57XNsSJwra.jpg" alt="เวรตักอาหาร">
+                <div class="card-content">
+                    <h3>เวรตักอาหาร</h3>
+                    <i class="fa-solid fa-caret-down arrow-icon"></i>
+                </div>
+                <div class="submenu" id="submenu3">
+                    <ul>
+                        <li>
+                            การถาม-ตอบเมนูอาหารกลางวันกับเพื่อนครูที่เป็นเวรด้วยกัน
+                            <a href="/situation3_1.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การถาม-ตอบถึงภาระงานในการจัดเตรียมอาหารกลางวันกับเพื่อนครูที่เป็นเวรด้วยกัน
+                            <a href="/situation3_2.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การพูดเสนอความช่วยเหลือกับเพื่อนครูในการดูแลนักเรียน
+                            <a href="/situation3_3.html" class="start-btn">เริ่ม</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ห้องอาหารครู -->
+            <div class="card" onclick="toggleSubmenu('submenu4', this)">
+                <img src="https://assets.doodecoapp.com/official-website/blog/doodeco_interior_built-in_blog-17255704493329579" alt="ห้องอาหารครู">
+                <div class="card-content">
+                    <h3>ห้องอาหารครู</h3>
+                    <i class="fa-solid fa-caret-down arrow-icon"></i>
+                </div>
+                <div class="submenu" id="submenu4">
+                    <ul>
+                        <li>
+                            การแนะนำจุดวางอุปกรณ์ในการรับประทานอาหาร
+                            <a href="/situation4_1.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การถาม-ตอบเกี่ยวกับเมนูพิเศษสำหรับกิจกรรมค่ายฯ
+                            <a href="/situation4_2.html" class="start-btn">เริ่ม</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ห้องพักครู -->
+            <div class="card" onclick="toggleSubmenu('submenu5', this)">
+                <img src="https://i.pinimg.com/736x/ba/e4/8d/bae48d8ca09e5a2352e445f5a206e822.jpg" alt="ห้องพักครู">
+                <div class="card-content">
+                    <h3>ห้องพักครู</h3>
+                    <i class="fa-solid fa-caret-down arrow-icon"></i>
+                </div>
+                <div class="submenu" id="submenu5">
+                    <ul>
+                        <li>
+                            การพูดคุยกับเพื่อนครูเกี่ยวกับการเตรียมการสอน
+                            <a href="/situation5_1.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การพูดคุยกับเพื่อนครูเกี่ยวกับการปรึกษาปัญหาของนักเรียน
+                            <a href="/situation5_2.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การพูดคุยกับเพื่อนครูเกี่ยวกับกิจกรรมในโรงเรียน
+                            <a href="/situation5_3.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            ถาม – ตอบการคัดเลือกนักเรียนตัวแทน
+                            <a href="/situation5_4.html" class="start-btn">เริ่ม</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ห้องพยาบาล -->
+            <div class="card" onclick="toggleSubmenu('submenu6', this)">
+                <img src="https://amminterior.com/wp-content/uploads/2023/06/AMM-%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%9E%E0%B8%A2%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B9%83%E0%B8%99%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%87%E0%B8%B2%E0%B8%9901.png" alt="ห้องพยาบาล">
+                <div class="card-content">
+                    <h3>ห้องพยาบาล</h3>
+                    <i class="fa-solid fa-caret-down arrow-icon"></i>
+                </div>
+                <div class="submenu" id="submenu6">
+                    <ul>
+                        <li>
+                            การถาม-ตอบเกี่ยวกับภาระงานในห้องพยาบาลโรงเรียน
+                            <a href="/situation6_1.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การซักถามอาการเจ็บป่วยของครูที่มาใช้บริการห้องพยาบาลและแนะนำเกี่ยวกับสุขภาพ
+                            <a href="/situation6_2.html" class="start-btn">เริ่ม</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ห้องสมุด -->
+            <div class="card" onclick="toggleSubmenu('submenu7', this)">
+                <img src="https://vrthaimagazine.com.au/wp-content/uploads/2023/07/cover2-scaled.jpg" alt="ห้องสมุด">
+                <div class="card-content">
+                    <h3>ห้องสมุด</h3>
+                    <i class="fa-solid fa-caret-down arrow-icon"></i>
+                </div>
+                <div class="submenu" id="submenu7">
+                    <ul>
+                        <li>
+                            การถาม-ตอบ ถึงภาระงานของครูบรรณารักษ์
+                            <a href="/situation7_1.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การถาม–ตอบ ขอเข้าใช้บริการต่างๆ ของห้องสมุด
+                            <a href="/situation7_2.html" class="start-btn">เริ่ม</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ห้องคอมพิวเตอร์ -->
+            <div class="card" onclick="toggleSubmenu('submenu8', this)">
+                <img src="https://www.nottingham.edu.cn/en/Library/images/2022/research-computer-lab757x368.jpg" alt="ห้องคอมพิวเตอร์">
+                <div class="card-content">
+                    <h3>ห้องคอมพิวเตอร์</h3>
+                    <i class="fa-solid fa-caret-down arrow-icon"></i>
+                </div>
+                <div class="submenu" id="submenu8">
+                    <ul>
+                        <li>
+                            การถาม-ตอบ ถึงภาระงานของครูประจำห้องคอมพิวเตอร์
+                            <a href="/situation8_1.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การพูดคุยกับเพื่อนครูเพื่อขอยืมอุปกรณ์
+                            <a href="/situation8_2.html" class="start-btn">เริ่ม</a>
+                        </li>
+                        <li>
+                            การพูดคุยเพื่อชี้แจงระเบียบการใช้ห้องคอมพิวเตอร์
+                            <a href="/situation8_3.html" class="start-btn">เริ่ม</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ฟังก์ชันสำหรับแสดง/ซ่อนเมนูย่อยและหมุนไอคอนลูกศร
+        function toggleSubmenu(id, card) {
+            const submenu = document.getElementById(id);
+            const arrowIcon = card.querySelector('.arrow-icon');
+
+            // ปิดเมนูย่อยอื่นๆ ที่เปิดอยู่
+            document.querySelectorAll('.submenu').forEach((menu) => {
+                if (menu.id !== id && menu.style.display === "block") {
+                    menu.style.display = "none";
+                    menu.parentElement.classList.remove('active');
+                }
+            });
+
+            if (submenu.style.display === "block") {
+                submenu.style.display = "none";
+                card.classList.remove('active');
+            } else {
+                submenu.style.display = "block";
+                card.classList.add('active');
+            }
+        }
+    </script>
+    <script src="/index.js"></script>
+</body>
+
+</html>

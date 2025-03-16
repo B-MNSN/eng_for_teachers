@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Teachers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        .container {
+            margin: 1.5rem 0;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .banner {
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://i.pinimg.com/736x/d1/13/22/d11322e0795a2120ec9433e7afdaccee.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.8;
+            box-shadow: 0px 1px 4px 1px #000;
+
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0px 0px 10px rgb(0 0 0);
+        }
+
+        .calendar {
+            margin-top: 2rem;
+            padding: 20px;
+            border-radius: 20px;
+            background: #ffffff;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .calendar-header button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #5a6ea3;
+            transition: color 0.3s;
+        }
+        .calendar-header button:hover {
+            color: #3a4a7a;
+        }
+        .calendar-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #444;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+        .calendar-weekday {
+            font-weight: 500;
+            padding: 12px;
+            color: #5a6ea3;
+            background: #e8eaf6;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .calendar-day {
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            font-weight: 400;
+            color: #555;
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+        .calendar-day:hover {
+            background: #6666ff;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .calendar-day.disabled {
+            background: #f0f0f0;
+            color: #ccc;
+            cursor: not-allowed;
+            border: 1px solid #e0e0e0;
+        }
+        .calendar-day.today {
+            background: #ff0099;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(255, 0, 153, 0.3);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            z-index: 1000;
+            width: 350px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        .modal .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+        }
+        .modal .close-btn:hover {
+            color: #5a6ea3;
+        }
+        .modal h2 {
+            margin: 0 0 20px 0;
+            font-size: 1.5rem;
+            color: #444;
+            text-align: center;
+        }
+        .modal label {
+            display: block;
+            margin: 10px 0 5px 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .modal .appointment_form {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal input, .modal textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .modal input[type=time] {
+            cursor: pointer;
+        }
+        .modal input:focus, .modal textarea:focus {
+            border-color: #5a6ea3;
+            box-shadow: 0 0 8px rgba(90, 110, 163, 0.3);
+            outline: none;
+        }
+        .modal textarea {
+            resize: vertical;
+            height: 80px;
+        }
+        .modal button {
+            width: 100%;
+            padding: 10px;
+            background: #5a6ea3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+        .modal button:hover {
+            background: #3a4a7a;
+        }
+        .appointments {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 20px;
+            text-align: left;
+        }
+        .appointments .month-year-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #5a6ea3;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e8eaf6;
+        }
+        .appointments .appointment-item {
+            margin: 0;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            font-weight: 400;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+        .appointments .appointment-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .appointments .appointment-item i {
+            color: #5a6ea3;
+            transition: color 0.3s;
+        }
+        .appointments .appointment-item:hover i {
+            color: #3a4a7a;
+        }
+        .appointments .appointment-details {
+            display: none;
+            padding: 15px;
+            background: #e8eaf6;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .appointments .appointment-details p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .validate {
+            display: none;
+            color: red;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            margin: 0 0 1rem;
+        }
+        .validate.show::before {
+            content: "\f06a ";
+            font-family: "FontAwesome";
+            font-weight: 900;
+            color: red;
+            margin-right: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a class="nav-logo" href="/index.html">
+            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+        </a>
+        <div class="nav-links">
+            <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
+            <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
+            <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
+            <div class="user-menu">
+                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="dropdown">
+                    <a href="/login.html" id="loginButton">Login</a>
+                    <div id="logoutSection" style="display: none;">
+                        <div id="usernameDisplay"></div>
+                        <div id="logoutButton">Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="banner">
+            <h1>Appointment</h1>
+        </div>
+        <div class="calendar">
+            <div class="calendar-header">
+                <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                <h2 id="current-month-year"></h2>
+                <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-grid" id="calendar"></div>
+        </div>
+        <div class="appointments" id="appointments">
+            <p style="text-align: center; color: #888;">ไม่มีนัดหมายในเดือนนี้</p>
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <div class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></div>
+        <h2>นัดหมาย</h2>
+        <div class="appointment_form">
+            <label for="title">หัวเรื่อง</label>
+            <input type="text" id="title" placeholder="กรอกหัวเรื่อง">
+            <label for="description">รายละเอียด</label>
+            <textarea id="description" placeholder="กรอกรายละเอียด"></textarea>
+            <label for="time-select">เวลา</label>
+            <input type="time" id="time-select">
+            <span class="validate" id="validateText"></span>
+            <button onclick="confirmAppointment()">ยืนยัน</button>
+        </div>
+    </div>
+
+
+    <script>
+        const months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+        const weekdays = ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"];
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let selectedDate = null;
+        const appointments = [];
+        
+        function updateMonthYearDisplay() {
+            document.getElementById("current-month-year").innerText = `${months[currentMonth]} ${currentYear}`;
+        }
+
+        function generateCalendar() {
+            const daysContainer = document.getElementById("calendar");
+            daysContainer.innerHTML = "";
+            weekdays.forEach(day => daysContainer.innerHTML += `<div class='calendar-weekday'>${day}</div>`);
+            let firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            let today = new Date();
+            for (let i = 0; i < firstDay; i++) daysContainer.innerHTML += "<div></div>";
+            for (let i = 1; i <= daysInMonth; i++) {
+                let isToday = i === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
+                let day = `<div class='calendar-day ${isToday ? "today" : ""}' onclick='openCalendar(${i})'>${i}</div>`;
+                daysContainer.innerHTML += day;
+            }
+            updateMonthYearDisplay();
+        }
+
+        function changeMonth(offset) {
+            currentMonth += offset;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar();
+            renderAppointments();
+        }
+
+        function openModal(day) {
+            selectedDate = `${day} ${months[currentMonth]} ${currentYear}`;
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function confirmAppointment1() {
+            let title = document.getElementById("title").value;
+            let description = document.getElementById("description").value;
+            let time = document.getElementById("time-select").value;
+            const validateText = document.getElementById("validateText");
+
+            if (!title || !time) {
+                validateText.textContent = "กรุณากรอกหัวเรื่องและเวลา";
+                validateText.classList.add('show');
+                return;
+            }
+            let appointment = {
+                date: selectedDate,
+                time: time,
+                title: title,
+                description: description,
+                month: currentMonth,
+                year: currentYear
+            };
+            validateText.classList.remove('show');
+            appointments.push(appointment);
+            renderAppointments();
+            closeModal();
+            document.getElementById("title").value = "";
+            document.getElementById("description").value = "";
+        }
+
+        function confirmAppointment() {
+            let title = document.getElementById("title").value;
+            let description = document.getElementById("description").value;
+            let time = document.getElementById("time-select").value;
+            const validateText = document.getElementById("validateText");
+        
+            // ตรวจสอบค่าว่าง
+            if (!title || !time) {
+                validateText.textContent = "กรุณากรอกหัวเรื่องและเวลา";
+                validateText.classList.add('show');
+                return;
+            }
+        
+            // แยกส่วนของ selectedDate
+            const dateParts = selectedDate.split(" ");
+            const day = parseInt(dateParts[0], 10); // แปลงวันที่เป็นตัวเลข
+            const month = months.indexOf(dateParts[1]); // ดัชนีเดือน
+            const year = parseInt(dateParts[2], 10); // แปลงปีเป็นตัวเลข
+        
+            // สร้างวัตถุ Date
+            const date = new Date(year, month, day);
+        
+            // แยกชั่วโมงและนาทีจากเวลา
+            const [hours, minutes] = time.split(":").map(Number);
+        
+            // ตั้งค่าเวลาในวัตถุ Date
+            date.setHours(hours, minutes);
+        
+            // ตรวจสอบว่าวันที่ถูกต้องหรือไม่
+            if (isNaN(date.getTime())) {
+                validateText.textContent = "วันที่หรือเวลาไม่ถูกต้อง";
+                validateText.classList.add('show');
+                return;
+            }
+        
+            // แปลงวันที่และเวลาให้อยู่ในรูปแบบที่ Google Calendar ต้องการ
+            const startDate = date.toISOString().replace(/[-:]/g, "").split(".")[0];
+            const endDate = new Date(date.getTime() + 60 * 60 * 1000).toISOString().replace(/[-:]/g, "").split(".")[0];
+        
+            // สร้างลิงก์ Google Calendar
+            const googleCalendarLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&details=${encodeURIComponent(description)}&dates=${startDate}/${endDate}`;
+        
+            // เปิดลิงก์ในแท็บใหม่
+            window.open(googleCalendarLink, "_self");
+        
+            closeModal();
+        }
+
+        function renderAppointments() {
+            let appointDiv = document.getElementById("appointments");
+            appointDiv.innerHTML = "";
+
+            // กลุ่มนัดหมายตามเดือนและปี
+            const groupedAppointments = appointments.reduce((acc, appointment) => {
+                const key = `${appointment.month}-${appointment.year}`;
+                if (!acc[key]) {
+                    acc[key] = [];
+                }
+                acc[key].push(appointment);
+                return acc;
+            }, {});
+
+            // แสดงนัดหมายเฉพาะเดือนและปีที่เลือก
+            const currentKey = `${currentMonth}-${currentYear}`;
+            if (groupedAppointments[currentKey]) {
+                appointDiv.innerHTML += `<div class="month-year-header">${months[currentMonth]} ${currentYear}</div>`;
+                groupedAppointments[currentKey].forEach((appointment, index) => {
+                    let appointmentItem = document.createElement("div");
+                    appointmentItem.className = "appointment-item";
+                    appointmentItem.innerHTML = `
+                        <div>
+                            <i class="fas fa-calendar-check"></i>
+                            ${appointment.date} | เวลา ${appointment.time} | ${appointment.title}
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    `;
+                    let details = document.createElement("div");
+                    details.className = "appointment-details";
+                    details.innerHTML = `
+                        <p><strong>หัวเรื่อง:</strong> ${appointment.title}</p>
+                        <p><strong>วันที่:</strong> ${appointment.date}</p>
+                        <p><strong>เวลา:</strong> ${appointment.time}</p>
+                        <p><strong>รายละเอียด:</strong> ${appointment.description}</p>
+                    `;
+                    appointmentItem.addEventListener("click", () => {
+                        details.style.display = details.style.display === "block" ? "none" : "block";
+                    });
+                    appointDiv.appendChild(appointmentItem);
+                    appointDiv.appendChild(details);
+                });
+            } else {
+                appointDiv.innerHTML = `<p style="text-align: center; color: #888;">ไม่มีนัดหมายในเดือนนี้</p>`;
+            }
+        }
+
+        function openCalendar(day) {
+            // สร้างวันที่ในรูปแบบที่ถูกต้อง
+            const dateParts = `${day} ${months[currentMonth]} ${currentYear}`.split(" ");
+            const dayNumber = parseInt(dateParts[0], 10);
+            const monthIndex = months.indexOf(dateParts[1]);
+            const year = parseInt(dateParts[2], 10);
+
+            // สร้างวัตถุ Date
+            const date = new Date(year, monthIndex, dayNumber);
+
+            // ตั้งค่าเวลาเริ่มต้น (เช่น 09:00)
+            date.setHours(9, 0, 0); // คุณสามารถปรับเวลาเริ่มต้นได้ตามต้องการ
+
+            // ตั้งค่าเวลาสิ้นสุด (เช่น 10:00)
+            const endDate = new Date(date.getTime() + 60 * 60 * 1000); // เพิ่ม 1 ชั่วโมง
+
+            // แปลงวันที่และเวลาให้อยู่ในรูปแบบที่ Google Calendar ต้องการ
+            const startDateISO = date.toISOString().replace(/[-:]/g, "").split(".")[0];
+            const endDateISO = endDate.toISOString().replace(/[-:]/g, "").split(".")[0];
+
+            // สร้างลิงก์ Google Calendar
+            const googleCalendarLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Meeting&details=Discuss%20project%20progress&dates=${startDateISO}/${endDateISO}`;
+
+            // เปิดลิงก์ในแท็บใหม่
+            window.open(googleCalendarLink, "_self");
+        }
+        
+        generateCalendar();
+    </script>
+</body>
+
+</html>

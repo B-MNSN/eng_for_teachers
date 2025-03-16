@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "Kanit", Arial, sans-serif;
+            background: rgb(123,146,190);
+            background: radial-gradient(circle, rgba(123,146,190,1) 0%, rgba(231,235,240,1) 100%);  
+        }
+
+        .register-container {
+            background: rgb(255 255 255 / 85%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            backdrop-filter: blur(10px);
+        }
+
+        .head_regis {
+            text-align: center;
+        }
+       
+        .icon {
+            font-size: 45px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .input-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .input-container label {
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+        
+        .input-container i {
+            position: absolute;
+            left: 15px;
+            top: 65%;
+            transform: translateY(-20%);
+            color: #aaa;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            margin: 0.5rem 0 0;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .register-btn:hover {
+            background: #333;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="head_regis">
+            <i class="fa-solid fa-user-plus icon"></i>
+            <h2>Create an account</h2>
+            <span>Please enter your details to create your account.</span>
+        </div>
+        <div class="input-container">
+            <i class="fa-solid fa-circle-user"></i>
+            <label for="regis_username">Username</label>
+            <input type="text" class="input-field" id="regis_username" placeholder="Username">
+        </div>
+        <div class="input-container">
+            <i class="fas fa-envelope"></i>
+            <label for="regis_email">Email</label>
+            <input type="text" class="input-field" id="regis_email" placeholder="test@test.com">
+        </div>
+        <div class="input-container">
+            <i class="fas fa-lock"></i>
+            <label for="regis_pass">Password</label>
+            <input type="password" class="input-field" id="regis_pass" placeholder="Password">
+        </div>
+        <button class="register-btn" id="btnRegister">Sign up</button>
+    </div>
+</body>
+</html>
