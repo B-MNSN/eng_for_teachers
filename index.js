@@ -90,6 +90,7 @@ async function showTableData() {
        const sheetData = await fetchSheetData();
        const userData = sheetData.find(row => row.username === storedUsername);
         if (userData) {
+            // console.log(userData)
             // แสดงข้อมูล pass1-pass5 ใน boxPass
             let passHTML = '<tr>';
             for (let i = 1; i < 5; i++) {
@@ -109,7 +110,7 @@ async function showTableData() {
             if (boxNotPass) {
                 let notPassHTML = '<tr>';
                 for (let i = 1; i < 5; i++) {
-                    const notPassKey = `notPass${i}`;
+                    const notPassKey = `not_pass${i}`;
                     if (userData[notPassKey]) {
                         // แทนที่ , ด้วย ,<br>
                         const formattedValue = userData[notPassKey].replace(/,/g, ',<br>');
