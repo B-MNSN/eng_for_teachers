@@ -11,6 +11,123 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
     <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: rgb(231, 235, 240);
+            color: #3d3d3d;
+            margin: 1rem;
+            padding: 0;
+            font-family: "Kanit", Arial, sans-serif;
+            font-size: 1rem;
+        }
+        
+        a {
+            text-decoration: none !important;
+            color: #000;
+        }
+        .navbar {
+            background-color: #4d6bfe;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        .nav-logo{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-logo span {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .nav-links .menu-item {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.25rem;
+            padding: 0.75rem 1rem;
+            position: relative;
+            transition: color 0.3s;
+            
+        }
+        
+        .nav-links .menu-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: width 0.3s ease-in-out;
+            left: 50%;
+            transform: translate(-50%, 0);
+            
+        }
+        
+        .nav-links .menu-item:hover::after {
+            width: 100%;
+        }
+        
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .user-icon {
+            color: #ffffff;
+            font-size: 1.75rem;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 150px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: end;
+            padding: 0.5rem;
+            font-size: 1.15rem;
+            z-index: 1;
+        }
+        
+        .dropdown #logoutButton {
+           cursor: pointer;
+        }
+        .dropdown div {
+            padding: 0.5rem;
+        }
+        .dropdown #logoutSection div:not(:last-child) {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .user-menu:hover .dropdown {
+            display: block;
+        }
+        
         .container {
             margin: 1.5rem 0;
             background: white;
@@ -20,6 +137,432 @@
             text-align: center;
         }
 
+        .main-container {
+            margin: 1.5rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        
+        
+        .title-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .title-section h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: textGlow 2s infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            0% {text-shadow: 0 0 5px rgba(67, 97, 238, 0.3);}
+            100% {text-shadow: 0 0 15px rgba(67, 97, 238, 0.6);}
+        }
+        
+        .title-section h2 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        
+        .welcome-banner {
+            background: linear-gradient(135deg, #f72585, #b5179e);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .welcome-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/always-grey.png');
+            opacity: 0.1;
+        }
+        
+        .welcome-banner h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .welcome-banner h3::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: white;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+        
+        .welcome-banner:hover h3::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .language-bubbles {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .bubble {
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            cursor: default;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bubble::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+            z-index: -1;
+        }
+        
+        .bubble:nth-child(1) {
+            background: #ff9e7d;
+            animation: float 3s ease-in-out infinite;
+        }
+        .bubble:nth-child(2) {
+            background: #8bd8bd;
+            animation: float 3s ease-in-out infinite 0.5s;
+        }
+        .bubble:nth-child(3) {
+            background: #ffd166;
+            animation: float 3s ease-in-out infinite 1s;
+        }
+        .bubble:nth-child(4) {
+            background: #a5bdfd;
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+        .bubble:nth-child(5) {
+            background: #cdb4db;
+            animation: float 3s ease-in-out infinite 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% {transform: translateY(0);}
+            50% {transform: translateY(-10px);}
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed #4d6bfe;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover::after {
+            opacity: 0.3;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(15deg);
+            color: var(--accent);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .feature-card h3::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .feature-card:hover h3::after {
+            width: 100%;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-image {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+        }
+        
+        .feature-card:hover .feature-image {
+            transform: scale(1.05);
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.2));
+        }
+        
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.6;
+            animation: floatAround 15s infinite linear;
+        }
+        
+        @keyframes floatAround {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(100px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(50px, -50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        .english-tip {
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent);
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .english-tip::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/841/841539.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+        }
+        
+        @keyframes pulse {
+            0% {box-shadow: 0 0 0 0 rgba(247, 37, 133, 0.4);}
+            70% {box-shadow: 0 0 0 10px rgba(247, 37, 133, 0);}
+            100% {box-shadow: 0 0 0 0 rgba(247, 37, 133, 0);}
+        }
+        
+        .english-tip h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .english-tip p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+            height: 200px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .title-section h1 {
+                font-size: 2rem;
+            }
+            
+            .title-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .guideline {
             margin-top: 30px;
             padding: 30px;
@@ -27,6 +570,7 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .guideline h2 i {
@@ -50,6 +594,12 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .guideline-card:hover {
@@ -61,7 +611,14 @@
             font-size: 40px;
             color: #6666ff;
             margin-bottom: 15px;
+            transition: color 0.3s, transform 0.3s;
         }
+
+        .guideline-card:hover i {
+            color: #ffcc00;
+            transform: rotate(10deg);
+        }
+
 
         .guideline-card h4 {
             font-size: 20px;
@@ -72,63 +629,195 @@
             font-size: 14px;
             color: #555;
         }
+        
     </style>
 </head>
 
 <body>
+    <!-- Mobile Menu Backdrop -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">เมนู</div>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="/index.html" class="mobile-menu-item">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <a href="/tasks.html" class="mobile-menu-item">
+                <i class="fas fa-tasks"></i> Task
+            </a>
+            <a href="/appointment.html" class="mobile-menu-item">
+                <i class="far fa-calendar-alt"></i> Appointment
+            </a>
+            <a href="/results.html" class="mobile-menu-item">
+                <i class="fas fa-chart-bar"></i> Result
+            </a>
+            <div class="mobile-menu-item" id="mobileUserMenu" style="cursor: pointer;">
+                <i class="fa-solid fa-circle-user"></i> User
+                <i class="fas fa-chevron-down ml-auto" style="margin: 0 0 0 auto;"></i>
+            </div>
+            <div class="mobile-dropdown" id="mobileDropdown">
+                <a href="/login.html" class="mobile-dropdown-item loginButton" id="loginButton">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <div class="mobile-dropdown-item logoutSection" id="logoutSection" style="display: none;">
+                    <div id="usernameDisplay" class="dropdown-item usernameDisplay"></div>
+                    <div id="logoutButton" class="dropdown-item logoutButton" ><i class="fas fa-sign-out-alt"></i>Logout</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
     <div class="navbar">
-        <!-- <a class="nav-logo" href="https://sites.google.com/view/working-in-daily-life/home">
-            <img src="https://i.imghippo.com/files/nIs3092EQ.png" width="50" alt="" srcset="">
-            <span>EngIntWork</span>
-        </a> -->
-        <a class="nav-logo" href="/index.html">
-            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
-            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
-        </a>
+        <div class="box-logo">
+            <a class="nav-logo" href="/index.html">
+                <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+                <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
         <div class="nav-links">
             <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
             <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
             <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
             <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
             <div class="user-menu">
-                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
-                <div class="dropdown">
-                    <a href="/login.html" id="loginButton">Login</a>
-                    <div id="logoutSection" style="display: none;">
-                        <div id="usernameDisplay"></div>
-                        <div id="logoutButton">Logout</div>
+                <div class="user-icon" id="desktopUserMenu">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>User</span>
+                </div>
+                <div class="dropdown" id="desktopDropdown">
+                    <a href="/login.html" id="loginButton" class="dropdown-item loginButton">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <div id="logoutSection" style="display: none;" class="logoutSection">
+                        <div id="usernameDisplay" class="dropdown-item usernameDisplay"></div>
+                        <div id="logoutButton" class="dropdown-item logoutButton" ><i class="fas fa-sign-out-alt"></i>Logout</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <h2>การบูรณาการภาษาอังกฤษในงานครู</h2>
-        <h2>ENGLISH INTEGRATED WORKING IN DAILY LIFE OF TEACHERS</h2>
-        <div class="guideline">
+    <div class="main-container">
+        <div class="title-section">
+            <h1>การบูรณาการภาษาอังกฤษในงานครู</h1>
+            <h2>ENGLISH INTEGRATED WORKING IN DAILY LIFE OF TEACHERS</h2>
+        </div>
+        <div class="welcome-banner">
+            <h3><i class="fas fa-graduation-cap"></i> ยินดีต้อนรับสู่ระบบการเรียนรู้ภาษาอังกฤษสำหรับครู</h3>
+            <p>พัฒนาทักษะภาษาอังกฤษของคุณด้วยวิธีที่สนุกและมีประสิทธิภาพ</p>
+        </div>
+
+      
+
+        <div class="language-bubbles">
+            <div class="bubble">Hello! สวัสดี!</div>
+            <div class="bubble">Good Morning อรุณสวัสดิ์</div>
+            <div class="bubble">How are you? สบายดีไหม?</div>
+            <div class="bubble">Let's Learn! มาเรียนกันเถอะ!</div>
+            <div class="bubble">Have Fun! เล่นให้สนุก!</div>
+        </div>
+
+        
+
+        
+        <div class="features-section">
             <h2><i class="fas fa-book-open"></i> คู่มือการใช้งาน</h2>
-            <div class="guideline-grid">
-                <div class="guideline-card">
-                    <i class="fas fa-tasks"></i>
-                    <h4>Task</h4>
-                    <p>พัฒนาและทบทวนทักษะภาษาอังกฤษของคุณผ่านแบบฝึกหัดและกิจกรรม</p>
-                </div>
-                <div class="guideline-card">
-                    <i class="far fa-calendar-alt"></i>
-                    <h4>Appointment</h4>
-                    <p>บริหารตารางงานและการนัดหมายของคุณในภาษาอังกฤษได้ง่ายๆ</p>
-                </div>
-                <div class="guideline-card">
-                    <i class="fas fa-chart-bar"></i>
-                    <h4>Result</h4>
-                    <p>ติดตามและวิเคราะห์ความก้าวหน้าของคุณในการเรียนรู้ภาษาอังกฤษ</p>
-                </div>
+            <div class="features-grid">
+                <a href="/tasks.html">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-tasks"></i></div>
+                        <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" alt="Tasks" class="feature-image">
+                        <h3>Task</h3>
+                        <p>พัฒนาและทบทวนทักษะภาษาอังกฤษของคุณผ่านแบบฝึกหัดและกิจกรรม</p>
+                    </div>
+                </a>
+                <a href="/appointment.html">
+                    <div class="feature-card">
+                            <div class="feature-icon"><i class="far fa-calendar-alt"></i></div>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3652/3652191.png" alt="Appointment" class="feature-image">
+                            <h3>Appointment</h3>
+                            <p>บริหารตารางงานและการนัดหมายของคุณในภาษาอังกฤษได้ง่ายๆ</p>
+                    </div>
+                </a>
+                <a href="/results.html">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+                            <img src="https://cdn-icons-png.flaticon.com/512/9913/9913576.png" alt="Results" class="feature-image">
+                        <h3>Result</h3>
+                        <p>ติดตามและวิเคราะห์ความก้าวหน้าของคุณในการเรียนรู้ภาษาอังกฤษ</p>
+                    </div>
+                </a>
             </div>
         </div>
+
+        <div class="english-tip">
+            <h3><i class="fas fa-lightbulb"></i> English Tip of the Day</h3>
+            <p>Try using "Could you please..." instead of "Can you..." to sound more polite when making requests. Example: "Could you please open your books to page 15?"</p>
+        </div>
+
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Students learning English">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="English books">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Teacher and students">
+            </div>
+        </div>
+       
+        <!-- <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Online learning">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Graduation">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1524179091875-bf99a9a6af57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Language exchange">
+            </div>
+        </div> -->
     </div>
 
     <script src="/index.js"></script>
+    <script>
+        // Add floating elements dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingContainer = document.querySelector('.floating-elements');
+            const icons = [
+                'fa-book', 'fa-globe', 'fa-pencil-alt', 'fa-graduation-cap', 
+                'fa-chalkboard-teacher', 'fa-language', 'fa-spell-check', 
+                'fa-comments', 'fa-certificate', 'fa-award'
+            ];
+            
+            for (let i = 0; i < 10; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.innerHTML = `<i class="fas ${icons[i]}"></i>`;
+                element.style.top = `${Math.random() * 90}%`;
+                element.style.left = `${Math.random() * 90}%`;
+                element.style.fontSize = `${20 + Math.random() * 30}px`;
+                element.style.animationDelay = `${Math.random() * 10}s`;
+                element.style.animationDuration = `${10 + Math.random() * 20}s`;
+                floatingContainer.appendChild(element);
+            }
+        });
+    </script>
 </body>
 
 </html>

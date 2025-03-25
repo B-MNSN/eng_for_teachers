@@ -11,6 +11,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
     <style>
+        :root {
+            --primary: #6f60f9;
+            --primary-light: #9d92fb;
+            --secondary: #4d6bfe;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --success-light: #e8f5e9;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --danger-light: #ffebee;
+            --gray: #e9ecef;
+            --text-dark: #343a40;
+            --text-light: #6c757d;
+        }
+        
         .container {
             margin: 1.5rem 0;
             background: white;
@@ -27,7 +44,8 @@
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
-            background-image: url('https://i.pinimg.com/736x/6c/73/f1/6c73f11eb36eee6e869d7066b630edbc.jpg');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -101,36 +119,236 @@
         }
 
         .note {
-            margin-top: 20px;
-            padding: 12px;
-            background: #ffebee;
-            border-left: 5px solid #d32f2f;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #b71c1c;
-            text-align: start;
+            margin-top: 2rem;
+            padding: 1rem 1.5rem;
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
+        
+        .note i {
+            color: #ff9800;
+            font-size: 1.25rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+            border-left: 6px solid var(--primary);
+            transition: transform 0.3s;
+            
+        }
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+        
+        .profile-details {
+            flex: 1;
+        }
+        
+        .profile-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .profile-name {
+            font-size: 1.35rem;
+            margin: 0 0 0.5rem;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-weight: 500;
+        }
+
+        .results-section {
+            margin: 2.5rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section-title i {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .passed-title i {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+        
+        .failed-title i {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+        
+        .assessment-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .assessment-table th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .assessment-table td {
+            padding: 1.25rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .assessment-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .assessment-table tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        .task-item {
+            display: block;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        
+        .passed-task {
+            background-color: var(--success-light);
+            color: var(--success);
+            border-left: 3px solid var(--success);
+        }
+        
+        .failed-task {
+            background-color: var(--danger-light);
+            color: var(--danger);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .empty-message {
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
     </style>
 </head>
 
 <body>
+    <!-- Mobile Menu Backdrop -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">เมนู</div>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="/index.html" class="mobile-menu-item">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <a href="/tasks.html" class="mobile-menu-item">
+                <i class="fas fa-tasks"></i> Task
+            </a>
+            <a href="/appointment.html" class="mobile-menu-item">
+                <i class="far fa-calendar-alt"></i> Appointment
+            </a>
+            <a href="/results.html" class="mobile-menu-item">
+                <i class="fas fa-chart-bar"></i> Result
+            </a>
+            <div class="mobile-menu-item" id="mobileUserMenu" style="cursor: pointer;">
+                <i class="fa-solid fa-circle-user"></i> User
+                <i class="fas fa-chevron-down ml-auto" style="margin: 0 0 0 auto;"></i>
+            </div>
+            <div class="mobile-dropdown" id="mobileDropdown">
+                <a href="/login.html" class="mobile-dropdown-item loginButton" id="loginButton">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <div class="mobile-dropdown-item logoutSection" id="logoutSection" style="display: none;">
+                    <div id="usernameDisplay" class="dropdown-item usernameDisplay"></div>
+                    <div id="logoutButton" class="dropdown-item logoutButton" ><i class="fas fa-sign-out-alt"></i>Logout</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
     <div class="navbar">
-        <a class="nav-logo" href="/index.html">
-            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
-            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
-        </a>
+        <div class="box-logo">
+            <a class="nav-logo" href="/index.html">
+                <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+                <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
         <div class="nav-links">
             <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
             <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
             <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
             <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
             <div class="user-menu">
-                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
-                <div class="dropdown">
-                    <a href="/login.html" id="loginButton">Login</a>
-                    <div id="logoutSection" style="display: none;">
-                        <div id="usernameDisplay"></div>
-                        <div id="logoutButton">Logout</div>
+                <div class="user-icon" id="desktopUserMenu">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>User</span>
+                </div>
+                <div class="dropdown" id="desktopDropdown">
+                    <a href="/login.html" id="loginButton" class="dropdown-item loginButton">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <div id="logoutSection" style="display: none;" class="logoutSection">
+                        <div id="usernameDisplay" class="dropdown-item usernameDisplay"></div>
+                        <div id="logoutButton" class="dropdown-item logoutButton" ><i class="fas fa-sign-out-alt"></i>Logout</div>
                     </div>
                 </div>
             </div>
@@ -141,48 +359,110 @@
         <div class="banner">
             <h1>Results</h1>
         </div>
-        <div class="info-box">
+        <!-- <div class="info-box">
             <div class="header">ผลการประเมิน การบูรณาการภาษาอังกฤษในงานครู</div>
             ชื่อ-สกุล: <span id="boxInfo"></span>
-        </div>
+        </div> -->
     
-        <table>
-            <thead>
-                <tr>
-                    <th>ผ่านการประเมินครั้งที่ 1</th>
-                    <th>ผ่านการประเมินครั้งที่ 2</th>
-                    <th>ผ่านการประเมินครั้งที่ 3</th>
-                    <th>ผ่านการประเมินครั้งที่ 4</th>
-                </tr>
-            </thead>
-            <tbody id="boxPass">
-                <!-- <tr>
-                    <td>งานที่ 1 สถานการณ์ที่ 1, <br>งานที่ 1 สถานการณ์ที่ 1,<br> งานที่ 1 สถานการณ์ที่ 1</td>
-                    <td>งานที่ 3 สถานการณ์ที่ 2</td>
-                    <td>งานที่ 5 สถานการณ์ที่ 1</td>
-                    <td>งานที่ 8 สถานการณ์ที่ 3</td>
-                </tr> -->
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                    <th>ไม่ผ่านการประเมินครั้งที่ 1</th>
-                    <th>ไม่ผ่านการประเมินครั้งที่ 2</th>
-                    <th>ไม่ผ่านการประเมินครั้งที่ 3</th>
-                    <th>ไม่ผ่านการประเมินครั้งที่ 4</th>
-                </tr>
-            </thead>
-            <tbody id="boxNotPass">
-                <!-- <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr> -->
-            </tbody>
-        </table>
-        <div class="note">หมายเหตุ: ถ้าผลการประเมินไม่ผ่านให้นัดหมายเพื่อประเมินอีกครั้งหนึ่ง</div>
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="profile-details">
+                <div class="profile-title">ผลการประเมินการบูรณาการภาษาอังกฤษในงานครู</div>
+                 <div class="profile-name"> ชื่อ-สกุล:  <div id="boxInfo">นางสาวสมหญิง เรียนดี</div></div>
+            </div>
+        </div>
+
+   
+        <div class="results-section">
+            <h2 class="section-title passed-title">
+                <i class="fas fa-check-circle"></i>
+                งานที่ผ่านการประเมิน
+            </h2>
+            <table class="assessment-table">
+                <thead>
+                    <tr>
+                        <th>ผ่านการประเมินครั้งที่ 1</th>
+                        <th>ผ่านการประเมินครั้งที่ 2</th>
+                        <th>ผ่านการประเมินครั้งที่ 3</th>
+                        <th>ผ่านการประเมินครั้งที่ 4</th>
+                    </tr>
+                </thead>
+                <tbody id="boxPass">
+                    <!-- <tr>
+                        <td>
+                            <span class="task-item passed-task">
+                                <i class="fas fa-check"></i> งานที่ 1 สถานการณ์ที่ 1
+                            </span>
+                            <span class="task-item passed-task">
+                                <i class="fas fa-check"></i> งานที่ 1 สถานการณ์ที่ 2
+                            </span>
+                           
+                        </td>
+                        <td>
+                            <span class="task-item passed-task">
+                                <i class="fas fa-check"></i> งานที่ 3 สถานการณ์ที่ 2
+                            </span>
+                        </td>
+                        <td>
+                            <span class="task-item passed-task">
+                                <i class="fas fa-check"></i> งานที่ 5 สถานการณ์ที่ 1
+                            </span>
+                        </td>
+                        <td>
+                            <span class="task-item passed-task">
+                                <i class="fas fa-check"></i> งานที่ 8 สถานการณ์ที่ 3
+                            </span>
+                        </td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="results-section">
+            <h2 class="section-title failed-title">
+                <i class="fas fa-times-circle"></i>
+                งานที่ไม่ผ่านการประเมิน
+            </h2>
+            <table class="assessment-table">
+                <thead>
+                    <tr>
+                        <th>ไม่ผ่านการประเมินครั้งที่ 1</th>
+                        <th>ไม่ผ่านการประเมินครั้งที่ 2</th>
+                        <th>ไม่ผ่านการประเมินครั้งที่ 3</th>
+                        <th>ไม่ผ่านการประเมินครั้งที่ 4</th>
+                    </tr>
+                </thead>
+                <tbody id="boxNotPass">
+                    <!-- <tr>
+                        <td>
+                            <span class="task-item failed-task">
+                                <i class="fas fa-times"></i> งานที่ 2 สถานการณ์ที่ 1
+                            </span>
+                        </td>
+                        <td>
+                            <span class="task-item failed-task">
+                                <i class="fas fa-times"></i> งานที่ 4 สถานการณ์ที่ 3
+                            </span>
+                        </td>
+                        <td class="empty-message">
+                            ไม่มีงานที่ไม่ผ่าน
+                        </td>
+                        <td class="empty-message">
+                            ไม่มีงานที่ไม่ผ่าน
+                        </td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="note">
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>หมายเหตุ: ถ้าผลการประเมินไม่ผ่านให้นัดหมายเพื่อประเมินอีกครั้งหนึ่ง</strong>
+            </div>
+        </div>
     </div>
     
     <script src="/index.js"></script>

@@ -175,23 +175,77 @@
 </head>
 
 <body>
+    <!-- Mobile Menu Backdrop -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">เมนู</div>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="/index.html" class="mobile-menu-item">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <a href="/tasks.html" class="mobile-menu-item">
+                <i class="fas fa-tasks"></i> Task
+            </a>
+            <a href="/appointment.html" class="mobile-menu-item">
+                <i class="far fa-calendar-alt"></i> Appointment
+            </a>
+            <a href="/results.html" class="mobile-menu-item">
+                <i class="fas fa-chart-bar"></i> Result
+            </a>
+            <div class="mobile-menu-item" id="mobileUserMenu" style="cursor: pointer;">
+                <i class="fa-solid fa-circle-user"></i> User
+                <i class="fas fa-chevron-down ml-auto" style="margin: 0 0 0 auto;"></i>
+            </div>
+            <div class="mobile-dropdown" id="mobileDropdown">
+                <a href="/login.html" class="mobile-dropdown-item loginButton" id="loginButton">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <div class="mobile-dropdown-item logoutSection" id="logoutSection" style="display: none;">
+                    <div id="usernameDisplay" class="dropdown-item usernameDisplay"></div>
+                    <div id="logoutButton" class="dropdown-item logoutButton" ><i class="fas fa-sign-out-alt"></i>Logout</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
     <div class="navbar">
-        <a class="nav-logo" href="/index.html">
-            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
-            <span>การบูรณาการภาษาอังกฤษในงานครู</span>
-        </a>
+        <div class="box-logo">
+            <a class="nav-logo" href="/index.html">
+                <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+                <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
         <div class="nav-links">
             <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
             <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
             <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
             <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
             <div class="user-menu">
-                <div class="user-icon"><i class="fa-solid fa-circle-user"></i></div>
-                <div class="dropdown">
-                    <a href="/login.html" id="loginButton">Login</a>
-                    <div id="logoutSection" style="display: none;">
-                        <div id="usernameDisplay"></div>
-                        <div id="logoutButton">Logout</div>
+                <div class="user-icon" id="desktopUserMenu">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>User</span>
+                </div>
+                <div class="dropdown" id="desktopDropdown">
+                    <a href="/login.html" id="loginButton" class="dropdown-item loginButton">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <div id="logoutSection" style="display: none;" class="logoutSection">
+                        <div id="usernameDisplay" class="dropdown-item usernameDisplay"></div>
+                        <div id="logoutButton" class="dropdown-item logoutButton" ><i class="fas fa-sign-out-alt"></i>Logout</div>
                     </div>
                 </div>
             </div>

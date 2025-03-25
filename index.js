@@ -98,9 +98,14 @@ async function showTableData() {
                 if (userData[passKey]) {
                     // แทนที่ , ด้วย ,<br>
                     const formattedValue = userData[passKey].replace(/,/g, ',<br>');
-                    passHTML += `<td>${formattedValue}</td>`;
+                    passHTML += `<td>
+                        <span class="task-item passed-task">
+                                <i class="fas fa-check"></i>
+                                ${formattedValue}
+                        </span>
+                    </td>`;
                 } else {
-                    passHTML += `<td>No data</td>`; // หากไม่มีข้อมูล
+                    passHTML += `<td class="empty-message">No data</td>`; // หากไม่มีข้อมูล
                 }
             }
             passHTML += '</tr>';
@@ -114,9 +119,14 @@ async function showTableData() {
                     if (userData[notPassKey]) {
                         // แทนที่ , ด้วย ,<br>
                         const formattedValue = userData[notPassKey].replace(/,/g, ',<br>');
-                        notPassHTML += `<td>${formattedValue}</td>`;
+                        notPassHTML += `<td>
+                            <span class="task-item failed-task">
+                                <i class="fas fa-times"></i>
+                                ${formattedValue}
+                            </span>
+                        </td>`;
                     } else {
-                        notPassHTML += `<td>No data</td>`; // หากไม่มีข้อมูล
+                        notPassHTML += `<td class="empty-message">No data</td>`; // หากไม่มีข้อมูล
                     }
                 }
                 notPassHTML += '</tr>';
@@ -129,31 +139,116 @@ async function showTableData() {
 
 }
 
-const loginButton = document.getElementById('loginButton');
-const logoutSection = document.getElementById('logoutSection');
-const usernameDisplay = document.getElementById('usernameDisplay');
-const logoutButton = document.getElementById('logoutButton');
+const loginButton = document.querySelectorAll('.loginButton');
+const logoutSection = document.querySelectorAll('.logoutSection');
+const usernameDisplay = document.querySelectorAll('.usernameDisplay');
+const logoutButton = document.querySelectorAll('.logoutButton');
 const storedUsername = sessionStorage.getItem('username');
 
 if (storedUsername) {
     // ถ้ามี username ใน sessionStorage (ล็อกอินแล้ว)
-    loginButton.style.display = 'none'; // ซ่อนปุ่มล็อกอิน
-    logoutSection.style.display = 'block'; // แสดงส่วนล็อกเอาท์
-    usernameDisplay.innerText = storedUsername; // แสดงชื่อผู้ใช้
+    loginButton.forEach(btn => {
+        btn.style.display = 'none'; // ซ่อนปุ่มล็อกอิน
+    })
+    logoutSection.forEach(btn => {
+        btn.style.display = 'block'; // แสดงส่วนล็อกเอาท์
+    })
+
+    if (usernameDisplay) {
+        usernameDisplay.forEach(item => {
+            item.innerText = storedUsername; // แสดงชื่อผู้ใช้
+        })
+    }
 } else {
     // ถ้าไม่มี username ใน sessionStorage (ยังไม่ได้ล็อกอิน)
-    loginButton.style.display = 'block'; // แสดงปุ่มล็อกอิน
-    logoutSection.style.display = 'none'; // ซ่อนส่วนล็อกเอาท์
+    loginButton.forEach(btn => {
+        btn.style.display = 'block';
+    })
+    logoutSection.forEach(btn => {
+        btn.style.display = 'none';
+    })
 }
 
 // จัดการการคลิกปุ่มล็อกเอาท์
 if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-        // เคลียร์ sessionStorage
-        sessionStorage.removeItem('username');
-        sessionStorage.removeItem('name');
+    logoutButton.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // เคลียร์ sessionStorage
+            sessionStorage.removeItem('username');
+            sessionStorage.removeItem('name');
+    
+            // รีเฟรชหน้าเว็บ (หรือเปลี่ยนเส้นทางไปที่หน้าล็อกอิน)
+            window.location.href = '/login.html';
+        });
+    })
+}
 
-        // รีเฟรชหน้าเว็บ (หรือเปลี่ยนเส้นทางไปที่หน้าล็อกอิน)
-        window.location.href = '/login.html';
+
+
+// Mobile menu functionality
+const mobileMenuBtn = document.getElementById('mobile-menu');
+const mobileMenuCloseBtn = document.getElementById('mobileMenuClose');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuBackdrop = document.getElementById('menuBackdrop');
+const body = document.body;
+
+// Toggle mobile menu
+function toggleMenu() {
+    mobileMenuBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    menuBackdrop.classList.toggle('active');
+    body.classList.toggle('menu-open');
+}
+
+if (mobileMenuCloseBtn) {
+    mobileMenuCloseBtn.addEventListener('click', toggleMenu);
+
+}
+// Toggle mobile menu
+if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', toggleMenu);
+}
+
+// Close menu when clicking on backdrop
+if (menuBackdrop) {
+    menuBackdrop.addEventListener('click', toggleMenu);
+}
+
+// Mobile dropdown functionality
+const mobileUserMenu = document.getElementById('mobileUserMenu');
+const mobileDropdown = document.getElementById('mobileDropdown');
+const mobileDropdownIcon = mobileUserMenu.querySelector('.fa-chevron-down');
+
+if (mobileUserMenu) {
+    mobileUserMenu.addEventListener('click', function() {
+        mobileDropdown.classList.toggle('active');
+        mobileDropdownIcon.classList.toggle('fa-chevron-down');
+        mobileDropdownIcon.classList.toggle('fa-chevron-up');
+    });
+}
+
+// Desktop dropdown functionality
+const desktopUserMenu = document.getElementById('desktopUserMenu');
+const desktopDropdown = document.getElementById('desktopDropdown');
+
+if (desktopUserMenu) {
+    desktopUserMenu.addEventListener('click', function() {
+        desktopDropdown.classList.toggle('active');
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!desktopUserMenu.contains(event.target) && !desktopDropdown.contains(event.target)) {
+            desktopDropdown.classList.remove('active');
+        }
+    });
+}
+
+// Close mobile menu when clicking on a menu item
+const mobileMenuItems = document.querySelectorAll('.mobile-menu-item:not(#mobileUserMenu), .mobile-dropdown-item');
+if (mobileMenuItems) {
+    mobileMenuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            item.addEventListener('click', toggleMenu);
+        });
     });
 }
