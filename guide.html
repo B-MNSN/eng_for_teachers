@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Teachers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --purple: #7209b7;
+        }
+        
+        .main-container {
+            margin: 1.5rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .container {
+            margin: 3rem auto;
+        }
+        
+        .guide-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .guide-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(to right, var(--accent), #b5179e);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::after {
+            content: "";
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            margin-right: 1.5rem;
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        
+        .card-title {
+            font-size: 1.8rem;
+            margin: 0;
+            z-index: 1;
+        }
+        
+        .card-body {
+            padding: 2.5rem;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 4rem;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
+            z-index: 1;
+        }
+        
+        .step-content {
+            background: #f8f9fa;
+            padding: 1.8rem;
+            border-radius: 12px;
+            flex: 1;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-title i {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .step-image {
+            margin-top: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            max-width: 100%;
+        }
+        
+        .step-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .highlight-box {
+            background: #e9f5ff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--success);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box.warning {
+            background: #fff3e9;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .highlight-box.purple {
+            background: #f3e8ff;
+            border-left: 4px solid var(--purple);
+        }
+        
+        .highlight-title {
+            font-weight: 600;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .highlight-title i {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .menu-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            margin: 0.3rem 0;
+            box-shadow: 0 2px 5px rgba(247, 37, 133, 0.3);
+        }
+        
+        .image-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .image-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .image-card img {
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .image-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #666;
+            font-size: 0.9rem;
+            background: white;
+            margin-top: 3rem;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 3rem 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            
+            .card-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .step {
+                padding-left: 0;
+                flex-direction: column;
+            }
+            
+            .step-number {
+                position: relative;
+                margin-bottom: 1.5rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+        }
+        
+   
+        
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Menu Backdrop -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">เมนู</div>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="/index.html" class="mobile-menu-item">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <a href="/tasks.html" class="mobile-menu-item">
+                <i class="fas fa-tasks"></i> Task
+            </a>
+            <a href="/appointment.html" class="mobile-menu-item">
+                <i class="far fa-calendar-alt"></i> Appointment
+            </a>
+            <a href="/results.html" class="mobile-menu-item">
+                <i class="fas fa-chart-bar"></i> Result
+            </a>
+            <div class="mobile-menu-item" id="mobileUserMenu" style="cursor: pointer;">
+                <i class="fa-solid fa-circle-user"></i> User
+                <i class="fas fa-chevron-down ml-auto" style="margin: 0 0 0 auto;"></i>
+            </div>
+            <div class="mobile-dropdown" id="mobileDropdown">
+                <a href="/login.html" class="mobile-dropdown-item loginButton" id="loginButton">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <div class="mobile-dropdown-item logoutSection" id="logoutSection" style="display: none;">
+                    <div id="usernameDisplay" class="dropdown-item usernameDisplay"></div>
+                    <div id="logoutButton" class="dropdown-item logoutButton" ><i class="fas fa-sign-out-alt"></i>Logout</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="navbar">
+        <div class="box-logo">
+            <a class="nav-logo" href="/index.html">
+                <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/logo.png?v=1741808137013" width="50" alt="" srcset="">
+                <span>การบูรณาการภาษาอังกฤษในงานครู</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="/index.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/tasks.html" class="menu-item"><i class="fas fa-tasks"></i> Task</a>
+            <a href="/appointment.html" class="menu-item"><i class="far fa-calendar-alt"></i> Appointment</a>
+            <a href="/results.html" class="menu-item"><i class="fas fa-chart-bar"></i> Result</a>
+            <div class="user-menu">
+                <div class="user-icon" id="desktopUserMenu">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>User</span>
+                </div>
+                <div class="dropdown" id="desktopDropdown">
+                    <a href="/login.html" id="loginButton" class="dropdown-item loginButton">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <div id="logoutSection" style="display: none;" class="logoutSection">
+                        <div id="usernameDisplay" class="dropdown-item usernameDisplay"></div>
+                        <div id="logoutButton" class="dropdown-item logoutButton" ><i class="fas fa-sign-out-alt"></i>Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>คู่มือการใช้งานระบบ</h1>
+            <p>แนวทางการฝึกภาษาอังกฤษสำหรับครูผู้สอนตามบริบทสถานการณ์ต่างๆ</p>
+        </div>
+        
+        <div class="container">
+            <!-- Task Section -->
+            <div class="guide-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h2 class="card-title">ระบบ Task - การฝึกบทสนทนา</h2>
+                </div>
+                <div class="card-body">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="step-title"><i class="fas fa-mouse-pointer"></i> เลือกเมนู Task</h3>
+                            <p>เข้าสู่ระบบฝึกบทสนทนาโดยเลือก <span class="menu-button">Task</span> จากเมนูหลัก แล้วเลือกบริบทฝึกตามต้องการ</p>
+                            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/menu_tasks1.png?v=1743832236361" alt="Task Menu" class="step-image">
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="step-title"><i class="fas fa-list-ul"></i> เลือกบริบทและสถานการณ์</h3>
+                            <p>เลือกบริบทและสถานการณ์ที่ต้องการฝึกจากเมนูแบบ dropdown</p>
+                            
+                            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/menu_tasks2.png?v=1743832245444" alt="Task Menu" class="step-image">
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 class="step-title"><i class="fas fa-comments"></i> ฝึกบทสนทนา</h3>
+                            <p>ฝึกฝนด้วยการอ่านและฟังบทสนทนา โดยคลิกที่ปุ่ม <span class="menu-button">เล่นเสียงบทสนทนา</span> เพื่อฝึกการออกเสียง</p>
+                            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/menu_tasks3.png?v=1743832247939" alt="Practice Conversation" class="step-image">
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3 class="step-title"><i class="fas fa-exchange-alt"></i> ปรับเปลี่ยนคำศัพท์</h3>
+                            <p>สามารถเปลี่ยนคำศัพท์ตามตำแหน่งที่กำหนด (ด้วยตัวอักษร) ตามต้องการและสามารถฟังเสียงคำศัพท์ เมื่อเลือกเมนู</p>
+                            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/menu_tasks4.png?v=1743833129248" alt="Vocabulary Adjustment" class="step-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Appointment Section -->
+            <div class="guide-card">
+                <div class="card-header" style="background: linear-gradient(to right, #4cc9f0, #4895ef);">
+                    <div class="card-icon">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <h2 class="card-title">ระบบ Appointment - การนัดหมายประเมิน</h2>
+                </div>
+                <div class="card-body">
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3 class="step-title"><i class="fas fa-calendar-check"></i> นัดหมายประเมิน</h3>
+                            <p>หลังจากฝึกจนพร้อมแล้ว ให้เลือกเมนู <span class="menu-button">Appointment</span> เพื่อนัดหมายผู้วิจัยและคณะทำงานมาประเมินการสนทนาในสถานการณ์จริง</p>
+                            <div class="highlight-box purple">
+                                <h4 class="highlight-title"><i class="fas fa-info-circle"></i> ตัวอย่างการนัดหมาย</h4>
+                                <p>"นัดหมายประเมิน บริบทที่ 1 สถานการณ์ที่ 4<br>
+                                วันศุกร์ที่ 18 เมษายน 2568 เวลา 8.00 น.<br>
+                                บริเวณหน้าประตูโรงเรียน"</p>
+                            </div>
+                            <div class="image-grid">
+                                <div class="image-card">
+                                    <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/menu_appointment1.png?v=1743832253951" alt="Appointment System">
+                                    <div class="image-caption">หน้าต่างการนัดหมาย</div>
+                                </div>
+                                <div class="image-card">
+                                    <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/menu_appointment2.png?v=1743832255945" alt="Calendar Selection">
+                                    <div class="image-caption">เลือกวันที่จากปฏิทิน</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Result Section -->
+            <div class="guide-card">
+                <div class="card-header" style="background: linear-gradient(to right, #7209b7, #560bad);">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="card-title">ระบบ Result - ผลการประเมิน</h2>
+                </div>
+                <div class="card-body">
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3 class="step-title"><i class="fas fa-clipboard-check"></i> ตรวจสอบผลการประเมิน</h3>
+                            <p>หลังจากอาสาสมัครได้รับการประเมินการสนทนาในสถานการณ์จริง
+                                เรียบร้อยแล้วสามารถเข้าดูผลการประเมิน เมื่อเลือกเมนู  <span class="menu-button">Result</span></p>
+                            
+                            <img src="https://cdn.glitch.global/74f5bcf1-681d-408a-acdc-1ba83f569823/menu_result.png?v=1743832257940" alt="Result System" class="step-image">
+                            
+                            <div class="highlight-box warning">
+                                <h4 class="highlight-title"><i class="fas fa-exclamation-triangle"></i> กรณีไม่ผ่านการประเมิน</h4>
+                                <p>หากผลการประเมินไม่ผ่าน ให้กลับไปที่เมนู <span class="menu-button">Task</span> เพื่อฝึกในสถานการณ์ที่ยังไม่ผ่านการประเมิน และนัดหมายเพื่อประเมินอีกครั้งจนกว่าจะผ่านการประเมินทั้ง 4 สถานการณ์</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="/index.js"></script>
+</body>
+
+</html>

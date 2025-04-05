@@ -521,6 +521,63 @@
             color: #555;
         }
         
+         /* New Guide Button Styles */
+
+         .features-section {
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .features-header {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .features-section h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        .guide-button-container {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .guide-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(247, 37, 133, 0.3);
+        }
+
+        .guide-button:hover {
+            background: var(--primary);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .guide-button i {
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .guide-button:hover i {
+            transform: translateX(3px);
+        }
     </style>
 </head>
 
@@ -626,7 +683,15 @@
 
         
         <div class="features-section">
-            <h2><i class="fas fa-book-open"></i> คู่มือการใช้งาน</h2>
+            <div class="features-header">
+                <h2><i class="fas fa-book-open"></i> คู่มือการใช้งาน</h2>
+                <div class="guide-button-container">
+                    <a href="/guide.html" class="guide-button">
+                        <span>ดูรายละเอียด</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
             <div class="features-grid">
                 <a href="/tasks.html">
                     <div class="feature-card">
