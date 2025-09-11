@@ -64,7 +64,7 @@ async function checkLogin() {
         if (foundUser) {
             sessionStorage.setItem('username', foundUser.username);
             sessionStorage.setItem('name', foundUser.name);
-            window.open('./eng_for_teachers/index.html', '_self');
+            window.open('./index.html', '_self');
             validateText.classList.remove('show');
             return;
         } else {
