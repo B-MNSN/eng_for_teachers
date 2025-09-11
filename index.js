@@ -178,7 +178,7 @@ if (logoutButton) {
             sessionStorage.removeItem('name');
     
             // รีเฟรชหน้าเว็บ (หรือเปลี่ยนเส้นทางไปที่หน้าล็อกอิน)
-            window.location.href = '/login.html';
+            window.location.href = './login.html';
         });
     })
 }
