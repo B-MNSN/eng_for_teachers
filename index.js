@@ -61,6 +61,7 @@ async function checkLogin() {
         const sheetData = await fetchSheetData();
         const foundUser = sheetData.find(row => row.username === user.value && row.password == pass.value);
 
+        console.log(sheetData)
         if (foundUser) {
             sessionStorage.setItem('username', foundUser.username);
             sessionStorage.setItem('name', foundUser.name);
